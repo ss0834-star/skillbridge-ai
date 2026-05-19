@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-geist: 'DM Sans', system-ui, sans-serif;
+  --font-geist-mono: 'DM Mono', monospace;
+  --font-display: 'DM Sans', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #080c10;
+  color: #e6edf3;
+  font-family: var(--font-geist);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+.glass {
+  background: rgba(13,17,23,0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(48,54,61,0.6);
+}
+
+.score-ring {
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #161b22 25%, #1c2330 50%, #161b22 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(45,212,191,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,212,191,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.card {
+  @apply bg-surface-2 border border-border rounded-xl;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(45,212,191,0.15);
+  border-color: rgba(45,212,191,0.2);
+}
+
+.badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-accent-teal text-background font-semibold rounded-lg text-sm;
+  transition: all 0.2s;
+}
+.btn-primary:hover { @apply bg-teal-300; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(45,212,191,0.3); }
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 border border-border-2 text-text-muted font-medium rounded-lg text-sm;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { @apply border-accent-teal text-text; }
+
+.input {
+  @apply w-full bg-surface border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder-text-dim;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.input:focus { @apply border-accent-teal; box-shadow: 0 0 0 3px rgba(45,212,191,0.1); }
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
